@@ -1,12 +1,15 @@
+
 public class Nodo {
     private Estacion estacion;
     private Nodo padre;
+    private String linea;
     private double costeRealAcum;
     private double costeHeuristico;
 
-    public Nodo(Estacion estacion, Nodo padre, double costeRealAcum, double costeHeuristico) {
+    public Nodo(Estacion estacion, Nodo padre, double costeRealAcum, double costeHeuristico, String linea) {
         this.estacion = estacion;
         this.padre = padre;
+        this.linea = linea;
         this.costeRealAcum = costeRealAcum;
         this.costeHeuristico = costeHeuristico;
     }
@@ -30,6 +33,8 @@ public class Nodo {
     public double getCosteHeuristico() {
         return costeHeuristico;
     }
-
     
+    public String getLinea(){
+        return linea;
+    }
 }
