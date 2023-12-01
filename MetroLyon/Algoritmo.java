@@ -1,74 +1,71 @@
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Map.Entry;
 
-/* 
-ABIERTOS := [INICIAL] //inicialización 
-CERRADOS := [] 
-f'(INICIAL) := h'(INICIAL) 
-repetir 
-si ABIERTOS = [] entonces FALLO 
-si no // quedan nodos 
-extraer MEJORNODO de ABIERTOS con f' mí­nima 
-// cola de prioridad 
-mover MEJORNODO de ABIERTOS a CERRADOS 
-si MEJORNODO contiene estado_objetivo entonces 
-SOLUCION_ENCONTRADA := TRUE 
-si no 
-generar SUCESORES de MEJORNODO 
-para cada SUCESOR hacer TRATAR_SUCESOR 
-hasta SOLUCION_ENCONTRADA o FALLO */
-
-
 public class Algoritmo{
-    private List<String>camino;
-    private Map<String,Estacion>estaciones;
-    private float distanciaMin;
-    
-    private Map<String,Integer>listaCerrada;
-    private PriorityQueue<Estacion> listaAbierta;
-    
-  
 
-    public <T> Algoritmo(Map<String,Estacion>estaciones){
-        this.estaciones= estaciones;
-        camino= new LinkedList<String>();
-
-        listaCerrada= new HashMap<>();
-        listaAbierta = new PriorityQueue<>();
+    public static void algoritmoAEstr(String origen, String estacionFinal, Map<String,Estacion>estaciones) {
+        List<Nodo> camino = algoritmo(origen, estacionFinal, estaciones);
+        printCamino(camino, estaciones);
     }
 
-
-    public List<String> algoritmo(Estacion origen, Estacion destino){
-        Estacion actual = origen;
-        actual.setCoste(0.0);
-
-        while(actual.equals(null) || !actual.equals(destino)){
-            for(Entry<String, Double> entry : actual.getConexiones().entrySet()){
-                if(listaCerrada.get(entry.getKey())==null){
-                    Estacion a = estaciones.get(entry.getKey());
-                    a.setCoste(actual.getCoste());
-
-
-
-
-                    listaAbierta.add(estaciones.get(entry.getKey()));
-                }
-
-            }
-
-            actual = listaAbierta.poll();
-        }
+	private static List<Nodo> algoritmo(String origen, String estacionFinal, Map<String,Estacion>estaciones) {
+        PriorityQueue<Nodo> listaAbierta = new PriorityQueue<Nodo>(new ComparatorCosteTotal()); //opciones no visitadas
+        List<Nodo> listaCerrada = new LinkedList<>();
         
-        return camino;
+        listaAbierta.add(new Nodo(estaciones.get(origen), null, 0, getDistHeur(estaciones.get(origen), estaciones.get(estacionFinal))));
+        
+        while(listaAbierta.size() > 0) {
+            Nodo nodoAExpandir = listaAbierta.poll();
+
+            if(!nodoAExpandir.getEstacion().equals(estaciones.get(estacionFinal))) {
+                listaCerrada.add(nodoAExpandir); // añadimos a la lista cerrada el nodo con menor f
+
+                for(Entry<String, Double> conexion : nodoAExpandir.getEstacion().getConexiones().entrySet()) {
+                    Estacion estacionConectada = estaciones.get(conexion.getKey());
+                    if(!listaCerrada.contains(estacionConectada)) {
+
+                        //CALCULAMOS EL COSTE//
+                        double costeRealEstConect = nodoAExpandir.getCosteRealAcum() + nodoAExpandir.getEstacion().getConexiones().get(conexion.getKey());
+                        double costeHeurEstConect = getDistHeur(estaciones.get(conexion.getKey()), estaciones.get(estacionFinal));
+                        //---------------------//
+
+                        Nodo nuevoNodo = new Nodo(estaciones.get(conexion.getKey()), nodoAExpandir, costeRealEstConect, costeHeurEstConect);
+
+                        if(!listaAbierta.contains(nuevoNodo)) {
+                            listaAbierta.add(nuevoNodo);
+                        }
+                    }
+                }
+            }
+            else {
+                List<Nodo> camino = new LinkedList<>();
+                while(nodoAExpandir != null) {
+                    camino.add(nodoAExpandir);
+                    nodoAExpandir = nodoAExpandir.getPadre();
+                }
+                Collections.reverse(camino);
+                return camino;
+            }
+        }
+        return null;
+    }
+
+    public static void printCamino(List<Nodo> camino, Map<String,Estacion>estaciones) {
+        for(int i = 0; i < camino.size(); i++) {
+            for(Entry<String, Estacion> est: estaciones.entrySet()) {
+                if(est.getValue().equals(camino.get(i).getEstacion())) {
+                    System.out.println(est.getKey());
+                }
+            }
+        }
+        System.out.println("Distancia total recorrida: " + camino.get(camino.size()-1).getCosteRealAcum());
     }
     
-
-
-    public double getDistHeur(Estacion e1, Estacion e2){
-        return (double) Math.sqrt(Math.pow(e2.getCoordenadaX()-e1.getCoordenadaX(), 2) + Math.pow(e2.getCoordenadaY()-e1.getCoordenadaY(), 2));
+    public static float getDistHeur(Estacion e1, Estacion e2){
+        return (float) Math.sqrt(Math.pow(e2.getCoordenadaX()-e1.getCoordenadaX(), 2) + Math.pow(e2.getCoordenadaY()-e1.getCoordenadaY(), 2));
     }
 }

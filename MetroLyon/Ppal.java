@@ -43,7 +43,7 @@ public class Ppal {
         estaciones.put("Valmy", new Estacion(640378.7,5070588.0, new HashMap<String,Double>(){{put("Gare de Vaise",702.0); put("Gorge de Loup",950.0);}}));
         estaciones.put("Gorge de Loup", new Estacion(640361.3,5069636.6, new HashMap<String,Double>(){{put("Vieux Lyon Cathedrale St. Jean",1740.0); put("Valmy",950.0);}}));
         estaciones.put("Vieux Lyon Cathedrale St. Jean", new Estacion(641983.7,5069000.3, new HashMap<String,Double>(){{put("Gorge de Loup",1740.0); put("Bellecour",660.0); put("Fourviere",445.0); put("Minimes Theatres Romains",520.0);}}));
-        estaciones.put("Gillotiere", new Estacion(643278.5,5068520.5, new HashMap<String,Double>(){{put("Bellecour",720.0); put("Saxe Gambetta",405.0);}}));
+        estaciones.put("Guillotiere", new Estacion(643278.5,5068520.5, new HashMap<String,Double>(){{put("Bellecour",720.0); put("Saxe Gambetta",405.0);}}));
         estaciones.put("Garibaldi", new Estacion(644202.1,5068118.8, new HashMap<String,Double>(){{put("Saxe Gambetta",598.0); put("Sans-Souci",900.0);}}));
         estaciones.put("Sans-Souci", new Estacion(645017.4,5067736.4, new HashMap<String,Double>(){{put("Monplaisir-Lumiere",600.0); put("Garibaldi",900.0);}}));
         estaciones.put("Monplaisir-Lumiere", new Estacion(645561.7,5067477.4, new HashMap<String,Double>(){{put("Sans-Souci",600.0); put("Grange Blanche",650.0);}}));
@@ -56,6 +56,6 @@ public class Ppal {
         estaciones.put("Minimes Theatres Romains", new Estacion(641635.5,5068819.4, new HashMap<String,Double>(){{put("Vieux Lyon Cathedrale St. Jean",520.0); put("Saint-Just",430.0);}}));
         estaciones.put("Saint-Just", new Estacion(641254.2,5068668.7, new HashMap<String,Double>(){{put("Minimes Theatres Romains",430.0);}}));
         
-        
+        Algoritmo.algoritmoAEstr("Gare Part-Dieu Vivier Merle", "Croix-Paquet", estaciones);
     }
 }
