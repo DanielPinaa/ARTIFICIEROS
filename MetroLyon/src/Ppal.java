@@ -3,20 +3,24 @@ import java.util.LinkedList;
 import java.util.Map;
 
 public class Ppal {
-    public static Map<String,Estacion>estaciones ;
+    public static Map<String,Estacion> estaciones;
+    public static Map<String,Integer[]> mapDots;
+    
     public static void main(String[] args) {
-        /*Map<String,Estacion>*/estaciones = new HashMap<String,Estacion>();
+        estaciones = new HashMap<String,Estacion>();
+        mapDots = new HashMap<String,Integer[]>();
 
-    //velocidad media de una persona al caminar: 4.5 Km/h = 75 m/min
+        //velocidad media de una persona al caminar: 4.5 Km/h = 75 m/min
+        
         //ESTACIONES LINEA A
         estaciones.put("Perrache", new Estacion( "Perrache",642012.8, 5067725.7, new HashMap<String,Double>(){{put("Ampere Victor Hugo", 555.0);}},0,new LinkedList<String>(){{add("A");}}));
         estaciones.put("Ampere Victor Hugo", new Estacion("Ampere Victor Hugo", 642263, 5068219.3, new HashMap<String,Double>(){{put("Perrache",  555.0); put("Bellecour", 740.0);}},0,new LinkedList<String>(){{add("A");}}));
-        estaciones.put("Bellecour", new Estacion("Bellecour",  642604.7, 5068776.8, new HashMap<String,Double>(){{put("Ampere Victor Hugo", 740.0);put("Cordeliers", 697.0);put("Vieux Lyon Cathedrale St. Jean", 660.0);put("Guillotiere", 720.0);}},75,new LinkedList<String>(){{add("A");}}));
+        estaciones.put("Bellecour", new Estacion("Bellecour",  642604.7, 5068776.8, new HashMap<String,Double>(){{put("Ampere Victor Hugo", 740.0);put("Cordeliers", 697.0);put("Vieux Lyon Cathedrale St. Jean", 660.0);put("Guillotiere", 720.0);}},75,new LinkedList<String>(){{add("A");add("D");}}));
         estaciones.put("Cordeliers", new Estacion( "Cordeliers", 642750.8, 5069382.2, new HashMap<String,Double>(){{put("Bellecour", 697.0);put("Hotel de Ville Louis Pradel", 479.0);}},0,new LinkedList<String>(){{add("A");}}));
-        estaciones.put("Hotel de Ville Louis Pradel", new Estacion("Hotel de Ville Louis Pradel", 642783.4, 5069843, new HashMap<String,Double>(){{put("Foch", 754.0);put("Cordeliers", 479.0);put("Croix-Paquet", 434.0);}},300,new LinkedList<String>(){{add("A");}}));
+        estaciones.put("Hotel de Ville Louis Pradel", new Estacion("Hotel de Ville Louis Pradel", 642783.4, 5069843, new HashMap<String,Double>(){{put("Foch", 754.0);put("Cordeliers", 479.0);put("Croix-Paquet", 434.0);}},300,new LinkedList<String>(){{add("A");add("C");}}));
         estaciones.put("Foch", new Estacion( "Foch",643395.7, 5069999.2, new HashMap<String,Double>(){{put("Hotel de Ville Louis Pradel", 754.0);put("Massena", 713.0);}},0,new LinkedList<String>(){{add("A");}}));
         estaciones.put("Massena", new Estacion( "Massena",644082.9, 5070092.3, new HashMap<String,Double>(){{put("Charpennes Charles Hernu", 913.0);put("Foch", 713.0);}},0,new LinkedList<String>(){{add("A");}}));
-        estaciones.put("Charpennes Charles Hernu", new Estacion( "Charpennes Charles Hernu",644850.9, 5070242.9, new HashMap<String,Double>(){{put("Massena", 913.0);put("Republique Villeurbanne", 777.0);put("Brotteaux", 455.0);}},150,new LinkedList<String>(){{add("A");}}));
+        estaciones.put("Charpennes Charles Hernu", new Estacion( "Charpennes Charles Hernu",644850.9, 5070242.9, new HashMap<String,Double>(){{put("Massena", 913.0);put("Republique Villeurbanne", 777.0);put("Brotteaux", 455.0);}},150,new LinkedList<String>(){{add("A"); add("B");}}));
         estaciones.put("Republique Villeurbanne", new Estacion( "Republique Villeurbanne", 645680, 5070268.5, new HashMap<String,Double>(){{put("Gratte-Ciel", 747.0);put("Charpennes Charles Hernu", 777.0);}},0,new LinkedList<String>(){{add("A");}}));
         estaciones.put("Gratte-Ciel", new Estacion("Gratte-Ciel", 646370.9, 5070111.8, new HashMap<String,Double>(){{put("Republique Villeurbanne", 747.0);put("Flachet", 644.0);}},0,new LinkedList<String>(){{add("A");}}));
         estaciones.put("Flachet", new Estacion("Flachet",  646953.4, 5069971.1, new HashMap<String,Double>(){{put("Cusset", 869.0);put("Gratte-Ciel", 644.0);}},0,new LinkedList<String>(){{add("A");}}));
@@ -58,9 +62,59 @@ public class Ppal {
         estaciones.put("Fourviere", new Estacion("Fourviere",641640.6,5069261.1, new HashMap<String,Double>(){{put("Vieux Lyon Cathedrale St. Jean",445.0);}},0,new LinkedList<String>(){{add("D");}}));
         estaciones.put("Minimes Theatres Romains", new Estacion("Minimes Theatres Romains",641635.5,5068819.4, new HashMap<String,Double>(){{put("Vieux Lyon Cathedrale St. Jean",520.0); put("Saint-Just",430.0);}},0,new LinkedList<String>(){{add("D");}}));
         estaciones.put("Saint-Just", new Estacion("Saint-Just",641254.2,5068668.7, new HashMap<String,Double>(){{put("Minimes Theatres Romains",430.0);}},0,new LinkedList<String>(){{add("D");}}));
-        
-        //Algoritmo.algoritmoAEstr("Jean Mace", "Croix-Paquet", estaciones);
 
+        
+      //MAPDOTS LINEA A
+        mapDots.put("Perrache", new Integer[]{153, 317, 6, 6});
+        mapDots.put("Ampere Victor Hugo", new Integer[]{164, 291, 6, 6});
+        mapDots.put("Bellecour", new Integer[]{182, 265, 6, 6});
+        mapDots.put("Cordeliers", new Integer[]{195, 228, 6, 6});
+        mapDots.put("Hotel de Ville Louis Pradel", new Integer[]{190, 202, 13, 8});
+        mapDots.put("Foch", new Integer[]{235, 194, 6, 6});
+        mapDots.put("Massena", new Integer[]{272, 189, 6, 6});
+        mapDots.put("Charpennes Charles Hernu", new Integer[]{302, 186, 7, 9});
+        mapDots.put("Republique Villeurbanne", new Integer[]{357, 183, 6, 6});
+        mapDots.put("Gratte-Ciel", new Integer[]{385, 191, 6, 6});
+        mapDots.put("Flachet", new Integer[]{425, 202, 6, 6});
+        mapDots.put("Cusset", new Integer[]{465, 213, 6, 6});
+        mapDots.put("Laurent Bonnevay Astroballe", new Integer[]{505, 223, 6, 6});
+        mapDots.put("Vaulx-en-Velin La Soie", new Integer[]{569, 237, 6, 6});
+
+        //MAPDOTS LINEA B
+        mapDots.put("Oullins Gare", new Integer[]{104, 523, 6, 6});
+        mapDots.put("Stade de Gerland", new Integer[]{172, 460, 6, 6});
+        mapDots.put("Debourg", new Integer[]{185, 429, 6, 6});
+        mapDots.put("Place Jean Jaures", new Integer[]{206, 378, 6, 6});
+        mapDots.put("Jean Mace", new Integer[]{221, 339, 6, 6});
+        mapDots.put("Saxe Gambetta", new Integer[]{242, 286, 8, 9});
+        mapDots.put("Place Guichard Bourse du Travail", new Integer[]{247, 255, 6, 6});
+        mapDots.put("Gare Part-Dieu Vivier Merle", new Integer[]{286, 236, 6, 6});
+        mapDots.put("Brotteaux", new Integer[]{296, 208, 6, 6});
+     
+        //MAPDOTS LINEA C
+        mapDots.put("Cuire", new Integer[]{181, 82, 6, 6});
+        mapDots.put("Henon", new Integer[]{157, 135, 6, 6});
+        mapDots.put("Croix-Rousse", new Integer[]{176, 158, 6, 6});
+        mapDots.put("Croix-Paquet", new Integer[]{192, 178, 6, 6});
+        
+        //MAPDOTS LINEA D
+        mapDots.put("Gare de Vaise", new Integer[]{58, 120, 6, 6});
+        mapDots.put("Valmy", new Integer[]{62, 155, 6, 6});
+        mapDots.put("Gorge de Loup", new Integer[]{63, 207, 6, 6});
+        mapDots.put("Vieux Lyon Cathedrale St. Jean", new Integer[]{150, 244, 7, 10});
+        mapDots.put("Guillotiere", new Integer[]{225, 278, 6, 6});
+        mapDots.put("Garibaldi",  new Integer[]{278, 305, 6, 6});
+        mapDots.put("Sans-Souci", new Integer[]{320, 326, 6, 6});
+        mapDots.put("Monplaisir-Lumiere", new Integer[]{347, 340, 6, 6});
+        mapDots.put("Grange Blanche", new Integer[]{383, 357, 6, 6});
+        mapDots.put("Laennec", new Integer[]{406, 376, 6, 6});
+        mapDots.put("Mermoz Pinel", new Integer[]{415, 440, 6, 6});
+        mapDots.put("Parilly", new Integer[]{417, 490, 6, 6});
+        mapDots.put("Gare de Venissieux", new Integer[]{419, 581, 6, 6});
+        mapDots.put("Fourviere", new Integer[]{136, 227, 4, 4});
+        mapDots.put("Minimes Theatres Romains", new Integer[]{134, 256, 4, 4});
+        mapDots.put("Saint-Just", new Integer[]{116, 262, 4, 4});
+        
         new AppLauncher();
     }
 }
