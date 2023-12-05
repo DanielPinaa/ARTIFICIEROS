@@ -3,14 +3,17 @@ import java.util.LinkedList;
 import java.util.Map;
 
 public class Ppal {
+    // Atributos
     public static Map<String,Estacion> estaciones;
     public static Map<String,Integer[]> mapDots;
     
     public static void main(String[] args) {
-        estaciones = new HashMap<String,Estacion>();
+        estaciones = new HashMap<String,Estacion>(); 
         mapDots = new HashMap<String,Integer[]>();
 
-        //velocidad media de una persona al caminar: 4.5 Km/h = 75 m/min
+        /* Para conocer el tiempo estimado entre transborodos, tenemos en cuenta el siguiente dato: 
+           la velocidad media de una persona al caminar: 4.5 Km/h = 75 m/min
+        */
         
         //ESTACIONES LINEA A
         estaciones.put("Perrache", new Estacion( "Perrache",642012.8, 5067725.7, new HashMap<String,Double>(){{put("Ampere Victor Hugo", 555.0);}},0,new LinkedList<String>(){{add("A");}}));

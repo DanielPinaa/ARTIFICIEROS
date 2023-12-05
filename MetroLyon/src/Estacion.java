@@ -2,6 +2,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Estacion {
+    // Atributos
     private String nombre;
     private double coordenadaX;
     private double coordenadaY;
@@ -9,6 +10,7 @@ public class Estacion {
     private double metrosTransbordo;
     private List<String> lineas;
 
+    // Constructor
     public Estacion(String nombre, double coordenadaX, double coordenadaY, Map<String, Double>conexiones, double metrosTransbordo, List<String>lineas){
         this.nombre = nombre;
         this.coordenadaX= coordenadaX;
@@ -18,6 +20,7 @@ public class Estacion {
         this.lineas= lineas;
     }
 
+    // Getters
     public double getCoordenadaX(){
         return this.coordenadaX;
     }

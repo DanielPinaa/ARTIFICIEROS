@@ -11,6 +11,7 @@ public class AppLauncher extends JFrame implements ActionListener{
     JLabel imagen;
     JLabel imagen2;
     JLabel tren;
+    JLabel logo;
     JButton botonFinalizar;
     JButton botonIniciar;
     JLabel caminoGUI;
@@ -77,6 +78,11 @@ public class AppLauncher extends JFrame implements ActionListener{
       }
       imagen2.setBounds(25,10,50,50);
       add(imagen2);
+
+      
+      logo = new JLabel(new ImageIcon("LOGO.png"));
+      logo.setBounds(350, 700, 500, 100);;
+      add(logo);
   
  
       //TEXTO
