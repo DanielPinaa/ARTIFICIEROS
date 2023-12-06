@@ -1,11 +1,14 @@
 
 public class Nodo {
+
+    // Atributos
     private Estacion estacion;
     private Nodo padre;
     private String linea;
     private double costeRealAcum;
     private double costeHeuristico;
 
+    // Constructor
     public Nodo(Estacion estacion, Nodo padre, double costeRealAcum, double costeHeuristico, String linea) {
         this.estacion = estacion;
         this.padre = padre;
@@ -18,6 +21,7 @@ public class Nodo {
         return costeRealAcum + costeHeuristico;
     }
 
+    // Getters
     public Estacion getEstacion() {
         return estacion;
     }

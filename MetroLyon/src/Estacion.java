@@ -6,9 +6,9 @@ public class Estacion {
     private String nombre;
     private double coordenadaX;
     private double coordenadaY;
-    private Map<String, Double> conexiones;
-    private double metrosTransbordo;
-    private List<String> lineas;
+    private Map<String, Double> conexiones; //  Nombre y distancia de todas las estaciones que tienen conexión directa con this
+    private double metrosTransbordo;        // Distancia en metros al hacer un transbordo de una línea a otra, en caso de que exista
+    private List<String> lineas;            // Letra de todas las lineas de this
 
     // Constructor
     public Estacion(String nombre, double coordenadaX, double coordenadaY, Map<String, Double>conexiones, double metrosTransbordo, List<String>lineas){

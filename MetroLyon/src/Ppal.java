@@ -12,7 +12,7 @@ public class Ppal {
         mapDots = new HashMap<String,Integer[]>();
 
         /* Para conocer el tiempo estimado entre transborodos, tenemos en cuenta el siguiente dato: 
-           la velocidad media de una persona al caminar: 4.5 Km/h = 75 m/min
+            ----> La velocidad media de una persona al caminar: 4.5 Km/h = 75 m/min
         */
         
         //ESTACIONES LINEA A
@@ -118,6 +118,7 @@ public class Ppal {
         mapDots.put("Minimes Theatres Romains", new Integer[]{134, 256, 4, 4});
         mapDots.put("Saint-Just", new Integer[]{116, 262, 4, 4});
         
+        //Lanzamos la interfaz gráfica
         new AppLauncher();
     }
 }
